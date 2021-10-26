@@ -44,7 +44,7 @@ else:
 
 
 # Uciekanie if-ów w prawo można zwykle ograniczyć przez użycie elif, warto też
-# po prostu przemśleć czy nie da się zręczniej zapisać takiego fragmentu
+# po prostu przemyśleć czy nie da się zręczniej zapisać takiego fragmentu
 # programu niż powielając copy-paste instrukcje.
 # Zobaczmy jak to wygląda z if-else
 
@@ -119,7 +119,7 @@ else:
 
 
 # Dla liczb zmiennoprzecinkowych wskazane jest aby porównania przeprowadzać
-# ostrożnie, uwzlędniając możliwość błędów zaokrągleń i skończoną precyzję
+# ostrożnie, uwzględniając możliwość błędów zaokrągleń i skończoną precyzję
 # wyników. Funkcja math.isclose(), która do tego służy, jest dość skomplikowana
 # - można używać jej z domyślnymi wartościami tolerancji lub dostroić.
 
@@ -172,12 +172,12 @@ short = foo1(100) < 0 and foo2(100) < 0
 #
 # Można to wykorzystać do warunkowego wykonania instrukcji bez pisania if, np.
 
-def op1(): 
-    print('wywołane jest op1'); 
+def op1():
+    print('wywołane jest op1');
     return True
 
-def op2(): 
-    print('wywołane jest op2'); 
+def op2():
+    print('wywołane jest op2');
     return True
 
 (a > 5 and op1()) or op2()
@@ -188,11 +188,11 @@ if a > 5:
     op1()
 else:
     op2()
-    
+
 
 # Efekt osiągany użyciem if można także osiągnąć przez zastosowanie słowa
 # kluczowego while, chociaż nie jest to być może oczywiste i intuicyjne:
-    
+
 while a > 5:
     print('a jest większe niż 5')
     break
@@ -202,18 +202,18 @@ while a > 5:
 
 # Jeszcze bardziej dziwacznym rozwiązaniem może być celowe wywołanie błędu
 # aby uzyskać warunkowe wykonanie kodu:
-    
+
 try:
     b = 1 / (a - 5)
 except:
     print('a jest równe 5')
-    
+
 # Tego rodzaju triki mogą działać, ale nie są dobrą praktyką programowania.
 
 
 # Dobrą praktyką jest natomiast unikanie instrukcji warunkowych tam gdzie
 # są zbędne, przykładowo fragment:
-    
+
 y = math.cos(a) if a > 0 else math.cos(-a)
 
 # można zastąpić przez
@@ -226,11 +226,71 @@ y = math.cos(a)
 
 
 # W niektórych przypadkach instrukcję warunkową zastępuje się asercją, np.:
-    
+
 assert a >= 0
 
 # sprawdzi czy a jest większe niż zero. Robi się tak po to aby w trakcie prac
 # nad programem wyłapać błędy (takim błędem mogłaby być ujemna wartość a) bez
 # konieczności dopisywania dodatkowego kodu wypisującego komunikat itd.
-# Wszystkie asercje można wyłączyć włączając optymalizację w kompilatorze.
-# Instrukcji if nie można wyłączyć.
+# Wszystkie asercje można wyłączyć włączając optymalizację w kompilatorze,
+# a w ten sposób nieco zwiększyć prędkość działania programu gdy ten będzie już
+# przekazany użytkownikom. Instrukcji if nie można wyłączyć, nie ma też
+# w Pythonie takich rzeczy jak preprocesor znany z języka C dający możliwość
+# określania które linijki kodu źródłowego mają być użyte a które pominięte
+# przez kompilator.
+
+
+# Python jest językiem obiektowym (OOP) i niezależnie od tego językiem mającym
+# funkcje first class. Daje to możliwości zastępowania instrukcji warunkowej
+# znacznie bardziej zaawansowanymi technikami, w tym opisanymi w doskonałym
+# podręczniku "Design patters" (GoF). Wadą takich rozwiązań jest że mogą być
+# mniej czytelne. Poniżej przykład złego użycia instrukcji warunkowej if oraz
+# wskazówka jak zrobić to poprawnie.
+
+def foo(a, b, switch):
+    if switch == 1:
+        return a * a - b * b * b
+    else:
+        return a * a * a - b * b
+
+print(foo(5.1, 5.2, 1))
+print(foo(-0.1, 0.01, 2))
+
+# Jak widać funkcja foo wykonuje zupełnie różne obliczenia w zależności od tego
+# jaka jest wartość parametru switch. Dzieje się to przez użycie wewnątrz niej
+# instrukcji warunkowej if-else. Gdy jednak popatrzymy na to jak funkcja foo()
+# jest używana to zauważymy że znacznie lepiej jest zdefiniować dwie różne
+# funkcje takie jak foo1() i foo2()
+
+def foo1(a, b):
+    return a * a - b * b * b
+
+def foo2(a, b):
+    return a * a * a - b * b
+
+print(foo1(5.1, 5.2))
+print(foo2(-0.1, 0.01))
+
+# a w ten sposób wyeliminować if-else a także uprościć program. Podobnie taki
+# fragment jak poniżej:
+
+for i in range(1, 5):
+    if i == 1:
+        # ... tu jakieś instrukcje
+    elif 1 < i < 4:
+        # ... tu jakieś instrukcje
+    elif i == 4:
+        # ... tu jakieś instrukcje
+
+# jest po prostu nadużyciem instrukcji if, bo po prostu i for i if są tu zbędne.
+# Poprawnie należałoby napisać
+
+    i = 1:
+    # ... tu jakieś instrukcje
+    for i in range(2, 4):
+        # ... tu jakieś instrukcje
+    i = 4:
+    # ... tu jakieś instrukcje
+
+# ewentualnie jeżeli i nie jest potrzebne to nawet jeszcze krócej, bez i = 1,
+# bez i = 4.

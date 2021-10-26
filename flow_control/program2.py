@@ -3,7 +3,7 @@
 
 """
 Program w języku Python 3, wypisujący "Hello World", nieco bardziej
-skompilkowany, bo ma tzw. shebang (dwie piersze linie komentarza zawierające
+skomplikowany, bo ma tzw. shebang (dwie pierwsze linie komentarza zawierające
 wskazówkę że program jest napisany w Pythonie 3 i określające sposób kodowania
 znaków w pliku źródłowym jako utf-8) oraz instrukcję warunkową rozpoznającą
 czy został uruchomiony jako program (wtedy zmienna __main__ zawiera napis
