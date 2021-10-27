@@ -1,5 +1,8 @@
-#katalog na różne rzeczy - nie do publikacji
+# Katalog na różne rzeczy - nie do publikacji
 trash/
+
+# Katalog z opcjami edytora vscode
+.vscode/
 
 #pylint
 .pylint.d/
