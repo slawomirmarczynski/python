@@ -8,3 +8,4 @@
                   aby łatwiej było (także z konsoli Pythona) powtarzać obliczenia dla różnych długości boków - ilustruje jak
                   użycie funkcji pozwala na pisanie lepszych programów.
 1. **program_if** - przykłady użycia instrukcji warunkowej i wyrażenia warunkowego
+1. **program_loops** - przykłady iteracji przy użyciu pętli for i pętli while
