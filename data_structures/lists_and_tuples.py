@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Lista jako spis rzeczy różnych.
+Lista jako spis rzeczy różnych. Krotka jako lista niezmienna.
 
 W wielu językach programowania podstawową techniką zapamiętania wielu wartości
 pod jedną nazwą jest umieszczenie ich w tablicy. W Pythonie są tablice jakieś
@@ -25,9 +25,9 @@ import random
 
 list1 = [1, 2, 3, 4, 22]
 
-# Nie ma konieczności nazywania listy list1 czy w podobny sposób. Nie wolno
-# jednak użyć samego list, bo samo słowo list jest zarezerwowane. Lista może
-# więc nazywać sie np. list1, a, b, random_numbers itp. itd.
+# Nie ma konieczności nazywania listy list1 czy w podobny sposób. Jednak samo
+# słowo "list" jest zarezerwowane jako nazwa typu i dlatego lista może nazywać
+# się np. list1, list_, a, b, random_numbers itp. itd. - ale nigdy nie list.
 
 a = [1, 2, 3]
 b = [1, 10, 100, 1000]
@@ -154,11 +154,11 @@ first = tuple(first)
 # możliwe są pewne optymalizacje, a co więcej - zwykle ta niezmienność krotek
 # nie jest w ogóle problemem.
 #
-# Przykładowo mamy funkcję która ma zwracać dwie rzeczy - liczbę jedynek
+# Przykładowo mamy funkcję fun która ma zwracać dwie rzeczy - liczbę jedynek
 # i liczbę zer w łańcuch znaków. Łatwo to zrobić używając krotki (ew. listy)
 # - po prostu funkcja zwróci krotkę dwuelementową.
 
-def bdc(s):
+def fun(s):
     return s.count('1'), s.count('0')
 
 # Zwróćmy uwagę że krotka jest napisana bez nawiasów () - pisząc krotkę można
@@ -171,7 +171,7 @@ def bdc(s):
 
 FULL_ADDRESS = 'localhost', 80
 
-# a nawet użyć krotki do czegoś takiego
+# a nawet użyć krotki aby "oszczędzać na liczbie linijek kodu":
 
 a, b, c, d = 1, 2, 3, 4
 
@@ -188,4 +188,5 @@ a, b = b, a
 print(sorted((1, 3, 2, 0)))
 
 # zobaczymy że po sortowaniu będziemy mieli listę, a nie krotkę. Oczywiście
-# nie zadziałają operacje modyfikujące krotkę (pamiętajmy krotki są immutable).
+# nie ma operacji modyfikujących krotkę (pamiętajmy krotki są immutable),
+# takich jak append.
