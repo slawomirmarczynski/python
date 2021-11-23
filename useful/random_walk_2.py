@@ -2,20 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-Błądzene przypadkowe.
+Błądzenie przypadkowe.
 
 Błądzenie przypadkowe (random walking) jest uproszczonym modelem dyfuzji gazów
 i podobnych zjawisk: cząstka jest przesuwana w każdym kroku w losowo wybranym
 kierunku, dla uproszczenia (w modelu dwuwymiarowym) przesunięcia są tylko
 wzdłuż osi x lub osi y i zawsze mają jednostkową długość.
 
-Program, w tej wersji, ma dość niekonsekwentną strukturę - używa grafiki żółwia
-(moduł turtle) do rysowania trajektorii cząstki, ale to biblioteka matplotlib
-jest użyta do rysowania wykresu zależności średniej odległości po k krokach.
-Podobnie w programie używane są listy wspórzędnych, a mogłyby być od razu użyte
-wektory z biblioteki numpy (które świetnie współpracują z matplotlib). Wszystko
-to wynika z chęci pokazania jak nawięcej technik możliwych do użycia z Pythonem
-i jednocześnie zminimalizowania wysiłku programisty.
 
 CC-BY-NC-ND 2021 Sławomir Marczyński
 """
