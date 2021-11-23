@@ -21,9 +21,9 @@ CC-BY-NC-ND 2021 Sławomir Marczyński
 
 # -----------------------------------------------------------------------------
 
-# Najpierw tworzymy klasę obiektów. Ta część jest zwyke dość pracochłonna,
+# Najpierw tworzymy klasę obiektów. Ta część jest zwykle dość pracochłonna,
 # nawet jeżeli nie byłoby aż tyle komentarza (komentarz po # jest tu ekstra
-# objaśnieniem dla początkujacych).
+# objaśnieniem dla początkujących).
 
 class YesNoUnknown:
     """
