@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
 Lista L składa się z list które są listami czterech par współrzędnych x, y.
 
