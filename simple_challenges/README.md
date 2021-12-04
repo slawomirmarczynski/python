@@ -3,7 +3,7 @@
 Przykładowe, niezbyt obszerne w realizacji, problemy. Niektóre mogłyby mieć
 jakąś praktyczną przydatność, niektóre są bardziej abstrakcyjne, wszystkie służą
 ilustracji jak wykorzystać podstawowe instrukcje Pythona i standardowe moduły
-bibliotek do osiągnięcia z założonego celu.
+bibliotek do osiągnięcia założonego celu.
 
 1. *brute_force.py* - program niezbyt elegancki, nie wykorzystujący jakiegoś
    ładnego algorytmu, ale po prostu skuteczny - sprawdzający milion różnych
