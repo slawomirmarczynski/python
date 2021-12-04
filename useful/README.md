@@ -32,3 +32,9 @@ warunkowych; zastosowanie wyrażeń regularnych.
 1. *compare_two_files_4.py* - jest to ten sam wariant co *compare_two_files_3.py*, ale z usuniętymi komentarzami dydaktycznymi.
 1. *plik1.txt* - tekst przykładowy (szablon licencji MIT-expat).
 1. *plik2.txt* - tekst przykładowy (szablon licencji MIT-expat inaczej sformatowany).
+
+## Rozwiązywanie równań ruchu pocisku w powietrzu
+
+Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi prędkości.
+
+1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem
