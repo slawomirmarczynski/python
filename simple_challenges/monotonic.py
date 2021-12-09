@@ -2,23 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-Są dwie listy z napisami (łańcuchami znaków) L1 i L2, np.:
-
-    L1 = ["la", "to"]
-    L2 = ["kot", "semafor", "tolerancja", "kalambur"]
-
-Napisz funkcję która dla podanego jako lista ciągu liczb całkowitych, zwraca
+Napisz funkcję która, dla podanego jako lista ciągu liczb całkowitych, zwraca
 (jako nową listę) najdłuższy podciąg niemalejący jaki wystąpił na tej liście.
-Przykładowo jeżeli lista zawierałaby L = [1, 2, 3, -1, -2, 20, 30, 31, 31, 14,
-7] to powinna zwrócić [-2, 20, 30, 31, 31]. Przetestuj działanie tej funkcji
-w programie używając przypadkowo wygenerowanych liczb.
+Przykładowo jeżeli lista zawierałaby
 
-Przykładowe rozwiązanie poniżej nie jest efektywne (można to naprawić
-zastępując pętlę for, w której begin przyjmuje kolejne wartości, pętlą while
-przeskakującą już raz sprawdzone elementy listy), ale jest nieskomplikowane.
+        L = [1, 2, 3, -1, -2, 20, 30, 31, 31, 14, 7]
 
-Warto zapamiętać schemat optymalizacji - przyjmujemy jakieś rozwiązanie jako
-chwilowo najlepsze i systematycznie sprawdzamy czy można zastąpić go lepszym.
+to powinna zwrócić [-2, 20, 30, 31, 31].
+
+Przetestuj działanie tej funkcji w programie używając przypadkowo
+wygenerowanych liczb.
 
 
 CC-BY-NC-ND 2021 Sławomir Marczyński
