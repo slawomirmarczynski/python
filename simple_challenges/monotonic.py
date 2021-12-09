@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-PSą dwie listy z napisami (łańcuchami znaków) L1 i L2, np.:
+Są dwie listy z napisami (łańcuchami znaków) L1 i L2, np.:
 
     L1 = ["la", "to"]
     L2 = ["kot", "semafor", "tolerancja", "kalambur"]
