@@ -114,7 +114,7 @@ plt.xlabel('x, metry')
 plt.ylabel('y, metry')
 plt.show()
 
-plt.plot(t, m * np.sqrt(vx**2 + vy**2))
+plt.plot(t, m / 2 * (vx**2 + vy**2))
 plt.grid()
 plt.title('energia pocisku')
 plt.xlabel('czas, sekundy')
