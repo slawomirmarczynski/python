@@ -80,6 +80,7 @@ import math
 import numpy as np
 from scipy.integrate import solve_ivp
 from matplotlib import pyplot as plt
+from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 
 # Używamy: prostokątnego układu dwóch współrzędnych (pomijamy siłę Coriolisa
@@ -93,10 +94,10 @@ from matplotlib import pyplot as plt
 # tego rodzaju ulepszenia, a przecież wymagające dodatkowego pracy programisty,
 # są naprawdę potrzebne.
 
-t_end = 10 * 60  # czas sumulacji, sekundy
+t_end = 10 * 60  # czas sumulacji, sekundy; to nie jest czas obliczeń!
 h = 0.001  # krok symulacji, sekundy
 g = 9.81  # przyspieszenie grawitacyjne normalne, metry na sekundę kwadrat
-m = 0.1  # masa ciała
+m = 0.01  # masa ciała
 coef = 2 * m * g / 300**2
 alpha = math.radians(30)  # kąt w radianach (przeliczony ze 30 stopni)
 v0 = 300  # prędkość początkowa w metrach na sekundę
@@ -149,6 +150,8 @@ def hit_ground(t, q):
     """
     x, y, vx, vy = q
     return y
+
+
 hit_ground.terminal = True  # przerwać obliczenia gdy hit_ground jest zero ale
 hit_ground.direction = -1   # tylko wtedy gdy hit_ground zmienia się z + na -
 
@@ -173,9 +176,9 @@ v = np.sqrt(vx**2 + vy**2)
 # ruch powoduje przekazanie energii do powietrza wprawiając je w ruch,
 # a ostatecznie wzrośnie temperatura i energia wewnętrzna powietrza.
 
-E_kinetic = m / 2 * v**2
-E_potential = m * g * y
-E_total = E_kinetic + E_potential
+E_kinetic = m / 2 * v**2  # klasyczny wzór, nierelatywistyczny, dżule
+E_potential = m * g * y  # w pobliżu powierzchni Ziemii, dżule
+E_total = E_kinetic + E_potential  # dżule
 
 # Obliczamy drogę (wzdłuż trajektorii) przebytą przez ciało. Te obliczenia
 # nie są bardzo dokładne, bo używamy uproszczonego algorytmu: zastępujemy
@@ -184,7 +187,7 @@ E_total = E_kinetic + E_potential
 
 dx = np.diff(x)  # obliczanie różnic pomiędzy elementami
 dy = np.diff(y)  # obliczanie różnic pomiędzy elementami
-ds = np.sqrt(dx**2 + dy**2)  # obliczanie długości odcinka łamanej
+ds = np.sqrt(dx**2 + dy**2)  # obliczanie długości odcinków, wz. Pitagorasa
 s = np.cumsum(ds)  # cumsum jest (niemal) operacją odwrotną do diff
 s = np.insert(np.cumsum(ds), 0, 0)  # dopisujemy 0 do s aby len(s) == len(t)
 
@@ -192,6 +195,8 @@ s = np.insert(np.cumsum(ds), 0, 0)  # dopisujemy 0 do s aby len(s) == len(t)
 # Wykresy
 
 plt.plot(x, y)
+plt.gca().xaxis.set_minor_locator(AutoMinorLocator())
+plt.gca().yaxis.set_minor_locator(AutoMinorLocator())
 plt.grid()
 plt.title('trajektoria')
 plt.xlabel('x, metry')
@@ -199,6 +204,8 @@ plt.ylabel('y, metry')
 plt.show()
 
 plt.plot(t, E_kinetic, t, E_potential, t, E_total)
+plt.gca().xaxis.set_minor_locator(AutoMinorLocator())
+plt.gca().yaxis.set_minor_locator(AutoMinorLocator())
 plt.grid()
 plt.title('energia pocisku')
 plt.xlabel('czas, sekundy')
@@ -207,6 +214,8 @@ plt.legend(('kinetyczna', 'potencjalna', 'całkowita'))
 plt.show()
 
 plt.plot(s, E_kinetic, s, E_potential, s, E_total)
+plt.gca().xaxis.set_minor_locator(AutoMinorLocator())
+plt.gca().yaxis.set_minor_locator(AutoMinorLocator())
 plt.grid()
 plt.title('energia pocisku')
 plt.xlabel('przebyta droga, metry')
@@ -215,6 +224,8 @@ plt.legend(('kinetyczna', 'potencjalna', 'całkowita'))
 plt.show()
 
 plt.plot(s, v)
+plt.gca().xaxis.set_minor_locator(AutoMinorLocator())
+plt.gca().yaxis.set_minor_locator(AutoMinorLocator())
 plt.grid()
 plt.title('prędkość pocisku')
 plt.xlabel('przebyta droga, metry')
