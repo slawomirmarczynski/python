@@ -16,10 +16,10 @@ CC-BY-NC-ND 2021 Sławomir Marczyński
 import numpy as np
 from matplotlib import pyplot as plt
 
-temp_lo = 25.0
+temp_lo = 20.0
 temp_hi = 80.0
 
-N = 20      # rozmiar siatki wzdłuż osi x
+N = 40      # rozmiar siatki wzdłuż osi x
 M = 100     # rozmiar siatki wzdłuż osi y
 NM = N * M  # łączna liczba węzłów siatki
 
@@ -47,11 +47,52 @@ for i in range(N):
         else:
             b[ij] = temp_lo if i != 0 else temp_hi
 
+
 solution = np.linalg.solve(a, b)
 solution = np.reshape(solution, (N, M))
 
-plt.contourf(solution)
+
+x = np.linspace(0, M / 10, M)
+y = np.linspace(0, N / 10, N)
+
+
+plt.contourf(x, y, solution)
 plt.gca().set_aspect('equal')
 plt.hot()
 plt.colorbar()
+plt.title('rozkład temperatur w płaszczyźnie xy')
+plt.xlabel('x')
+plt.ylabel('y')
 plt.show()
+
+
+plt.plot(x, solution[N // 2, :],
+         x, (temp_hi + temp_lo) / 2 * np.ones(M))
+plt.grid()
+plt.title('rozkład temperatur w połowie grubości płytki')
+plt.xlabel('x, mm')
+plt.ylabel('temperatura, °C')
+plt.legend(('model', 'połowa różnicy temperatur'))
+plt.show()
+
+
+plt.plot(y, solution[:, 1],
+         y, solution[:, 10],
+         y, solution[:, M // 4],
+         y, solution[:, M // 2],
+         y, temp_hi - (temp_hi - temp_lo) / N * 10 * y, '--')
+plt.grid()
+plt.title('rozkład temperatur w połowie grubości płytki')
+plt.xlabel('y, mm')
+plt.ylabel('temperatura, °C')
+plt.legend(('wyniki dla x = 0.1 mm',
+            'wyniki dla x = 1 mm',
+            'wyniki dla x = 1/4 xmax',
+            'wyniki dla x = 1/2 xmax',
+            'linia prosta od t_min do t_max'))
+plt.show()
+
+
+print()
+print(f'temperatura w centrum płytki wynosi {solution[N // 2, M // 2]} °C')
+print()
