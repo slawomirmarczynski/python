@@ -11,7 +11,7 @@ same. Pliki uznać chcemy także za różne jeżeli w jednym z nich będzie napi
 
 Rozwiązanie "pythoniczne", czyli takie w którym wykorzystujemy regex'y oraz
 specyficzne cechy języka Python aby program był prosty, czytelny i zwięzły.
-Ten kod źródłowy jest taki sam jak poprzednio (compare_two_files_4.py),
+Ten kod źródłowy jest taki sam jak poprzednio (compare_two_files_3.py),
 ale usunięte są komentarze przeznaczone dla początkujacych.
 
 CC-BY-NC-ND 2021 Sławomir Marczyński
