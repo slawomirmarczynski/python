@@ -33,6 +33,10 @@ warunkowych; zastosowanie wyrażeń regularnych.
 1. *plik1.txt* - tekst przykładowy (szablon licencji MIT-expat).
 1. *plik2.txt* - tekst przykładowy (szablon licencji MIT-expat inaczej sformatowany).
 
+## Raportowanie zmian plików w folderze
+
+1. *cerber.py* - program z algorytmami o koszcie czasowym O(N\*\*2)
+
 ## Rozwiązywanie równań ruchu pocisku w powietrzu
 
 Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi prędkości.
