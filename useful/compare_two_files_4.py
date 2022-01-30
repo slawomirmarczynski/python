@@ -41,7 +41,7 @@ def read_text(file_name):
     with open(file_name) as file:
         text = file.read()
     text = text.strip()
-    text = re.sub(r'\s+', '*', text)
+    text = re.sub(r'\s+', ' ', text)
     return text
 
 
