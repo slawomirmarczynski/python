@@ -41,4 +41,6 @@ warunkowych; zastosowanie wyrażeń regularnych.
 
 Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi prędkości.
 
-1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem
+1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem.
+1. *air_drag_scipy.py* - program wykorzystujący metodę Runge-Kutty 4 rzędu i metodę Runge-Kutty
+    5 rzędu (RK45).
