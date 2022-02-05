@@ -282,7 +282,6 @@ for i in range(1, 5):
     elif i == 4:
         # ... tu jakieś instrukcje
 
-# jest po prostu nadużyciem instrukcji if, bo po prostu i for i if są tu zbędne.
 # Poprawnie należałoby napisać
 
     i = 1:
