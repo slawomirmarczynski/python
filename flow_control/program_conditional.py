@@ -19,7 +19,7 @@ import random  # generowanie liczb pseudolosowych
 a = random.randint(1, 10)  # przypadkowa liczba z przedział od 1 do 10 (włącznie)
 
 
-# Instrukcję warunkową co do zasady nie pisze się w jednej linijce programu,
+# Instrukcji warunkowej zasadniczo nie pisze się w jednej linijce programu,
 # bo chociaż to jest poprawne składniowo, to nie jest - w ocenie pythonistów
 # - eleganckie.
 
