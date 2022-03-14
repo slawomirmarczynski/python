@@ -44,6 +44,6 @@ cargo = solution(L)
 print(L)
 print(cargo)
 if len(L) == len(cargo):
-    print(f"wszystkie {len(L)} przesyłki można przewieźć od razu")
+    print(f"tak, wszystkie {len(L)} przesyłki można przewieźć od razu")
 else:
-    print(f"nie, bo można przewieźć tylko {len(cargo)} przesyłek z {len(L)}")
+    print(f"nie, można przewieźć tylko {len(cargo)} przesyłek z {len(L)}")
