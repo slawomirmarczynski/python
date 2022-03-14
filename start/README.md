@@ -1,4 +1,4 @@
-# Podstawy programowania, podstawowe struktury sterowania
+# Najprostsze przykłady
 
 1. **program1** - być może najprostszy program jaki można napisać w Pythonie 3 - wypisuje na ekranie tekst *Hello World*.
 1. **program2** - jest prawie taki sam jak *program1*, ale ma dodany shebang, deklarację kodowania znaków, docstring
