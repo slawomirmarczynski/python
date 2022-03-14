@@ -33,8 +33,14 @@ warunkowych; zastosowanie wyrażeń regularnych.
 1. *plik1.txt* - tekst przykładowy (szablon licencji MIT-expat).
 1. *plik2.txt* - tekst przykładowy (szablon licencji MIT-expat inaczej sformatowany).
 
+## Raportowanie zmian plików w folderze
+
+1. *cerber.py* - program z algorytmami o koszcie czasowym O(N\*\*2)
+
 ## Rozwiązywanie równań ruchu pocisku w powietrzu
 
 Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi prędkości.
 
-1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem
+1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem.
+1. *air_drag_scipy.py* - program wykorzystujący metodę Runge-Kutty 4 rzędu i metodę Runge-Kutty
+    5 rzędu (RK45).
