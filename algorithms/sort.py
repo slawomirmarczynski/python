@@ -74,7 +74,7 @@ def insertion_sort(a):
     for i in range(n):
         element = a[i]
         j = i
-        while a[j - 1] > element and j:
+        while j and a[j - 1] > element:
             a[j] = a[j - 1]
             j -= 1
         a[j] = element
