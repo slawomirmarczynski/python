@@ -59,19 +59,25 @@ class Maze:
 
     def __init__(self, width, height):
         """
-        Tworzenie labiryntu. Najpierw gromadzimy wszystkie komnaty i wszystkie
-        ściany. Potem usuwamy te ściany ściany, które chcą być usunięte.
+        Tworzenie labiryntu. 
+        
+        Najpierw gromadzimy wszystkie komnaty i wszystkie ściany. Potem usuwamy
+        te ściany które chcą być usunięte.
 
-        Args:
+        Parametry:
             width (int):  szerokość labiryntu
             height (int): wysokość labiryntu
-        Returns:
+        Zwraca:
             labirynt jako obiekt
         """
         self.WIDTH = width
         self.HEIGHT = height
         self._chambers = list()
         self._walls = set()
+
+        # Taka mała ciekawostka: klasa Maze definiowana zanim będziemy mieli
+        # w pełni zdefiniowaną klasę Chamber, ale możemy używać klasy Chamber
+        # już teraz.
 
         for x in range(self.WIDTH):
             for y in range(self.HEIGHT):
@@ -98,9 +104,10 @@ class Maze:
         """
         Narysowanie całego labiryntu.
 
-        Args:
-            view (View): obiekt podklasy View
+        Parametry:
+            view (View): obiekt podklasy klasy View
         """
+
         def draw_maze():
             for wall in self._walls:
                 wall.draw(view)
@@ -118,10 +125,11 @@ class Maze:
 
 class Chamber:
     """
-    Klasa, której obiekty reprezentują pojedynczą komnatę w labiryncie. Każda
-    komnata w labiryncie ma zbiór komnat z nią połączonych.
-    """
+    Klasa, której obiekty reprezentują pojedynczą komnatę w labiryncie. 
     
+    Każda komnata w labiryncie ma zbiór komnat z nią połączonych.
+    """
+
     def __init__(self, x, y):
         """
         Komnaty maja jakieś położenie, określone przez współrzędne (x,y).
@@ -131,17 +139,23 @@ class Chamber:
         self._connected = {self}
         
     def near(self, chamber):
+        """
+        Sprawdzanie czy dana komnata (self) sąsiaduje z inną komnatą (chamber).
+
+        Parametry:
+            chamber (Chamber): komnata którą sprawdzamy czy jest sąsiednią.
+        """
         distance = abs(self.X - chamber.X) + abs(self.Y - chamber.Y)
-        return distance == 1        
+        return distance == 1
 
     def merge_chamber(self, another):
         """
         Łączenie przez dwóch komnat a i b.  Jeżeli połączenia nie ma,
         to aktualizowana są listy komnat połączonych z komnatą a i b.
 
-        Args:
+        Parametry:
             another (Chamber): komnata, z którą połączenie jest sprawdzane.
-        Returns:
+        Zwraca:
             True jeżeli ściana powinna być usunięta ze zbioru/listy
             istniejących ścian, False jeżeli nie jest to konieczne.
         """
@@ -153,18 +167,19 @@ class Chamber:
                 ch._connected = self._connected
         return should_wall_be_removed
 
-#    def __str__(self):
-#        return f'Chamber({self.X}, {self.Y})'
-    
-    
+
 class Wall:
+    """
+    Klasa której obiekty reprezentują ściany.
+    """
 
     def __init__(self, a, b):
         """
         Ściana jest tworzona jako coś pomiędzy dwoma komnatami.
-        Args:
-            a (Chamber): komnata;
-            b (Chamber): komnata.
+
+        Parametry:
+            a (Chamber): jedna z komnat.
+            b (Chamber): druga z komnat.
         """
         self.A = a
         self.B = b
@@ -174,7 +189,7 @@ class Wall:
         Wywołanie tej metody nie oznacza bezwarunkowego usunięcia ściany,
         a tylko przygotowanie do usunięcia ściany.
 
-        Returns:
+        Zwraca:
             False jeżeli nic nie trzeba robić.
         """
         return self.A.merge_chamber(self.B)
@@ -187,7 +202,7 @@ class Wall:
         "standardowego zestawu narzędzi do rysowania", co skutecznie izoluje nas
         od konkretnej biblioteki graficznej itd.
 
-        Args:
+        Parametry:
             view (View): obiekt View, dostarczający toolkitu do rysowania
         """
         if self.A.Y == self.B.Y:
@@ -207,8 +222,7 @@ class View: # abstract
     Abstrakcja odmalowywania się labiryntu: zapamiętuje labirynt (który trzeba
     będzie kiedyś odmalowywać); deklaruje jakich narzędzi do "malowania" może
     używać labirynt. UWAGA: chociaż nazywa się View, to niezupełnie jest to ten
-    view o jaki chodzi we wzorcu model-view-controller (MVC). Klasa View i klasy
-    pochodne od View są raczej kontrolerami.
+    view o jaki chodzi we wzorcu model-view-controller (MVC).
     """
 
     def __init__(self, maze):
@@ -216,7 +230,7 @@ class View: # abstract
 
     def draw(self):
         """
-        Jeżeli maze jest to ma się narysować na tym, czyli this, obiekcie.
+        Jeżeli maze jest to ma się narysować na tym, czyli self, obiekcie.
         """
         if self._maze:
             self._maze.draw(self)
@@ -231,16 +245,23 @@ class View: # abstract
         nie określone jest jak konkretnie rysować, to będzie dopiero w klasach
         pochodnych.
 
-        Args:
-            x1: współrzędna
-            y1: współrzędna
-            x2: współrzędna
-            y2: współrzędna
+        Parametry:
+            x1: współrzędna.
+            y1: współrzędna.
+            x2: współrzędna.
+            y2: współrzędna.
         """
         raise NotImplementedError('Abstract')
 
 
 class ViewTurtle(View):
+    """
+    Subklasa konkretna klasy abstrakcyjnej View implementująca toolkit potrzebny
+    innym klasom do rysowania jako wywołania "grafiki żółwia".
+
+    Nie jest to szczególnie wyrafinowana grafika, ale jest proste, nie wymaga
+    innych niż standardowo dostępne bibliotek i co najważniejsze działa.
+    """
     def __init__(self, maze):
         super().__init__(maze)
         
@@ -266,7 +287,7 @@ class ViewTurtle(View):
         turtle.begin_fill()
         turtle.circle(d)  
         turtle.end_fill()
-        turtle.goto(X_MARGIN + x1 * X_UNIT, Y_MARGIN + y1 * Y_UNIT)        
+        turtle.goto(X_MARGIN + x1 * X_UNIT, Y_MARGIN + y1 * Y_UNIT)
         turtle.down()
         turtle.goto(X_MARGIN + x2 * X_UNIT, Y_MARGIN + y2 * Y_UNIT)
         turtle.up()
@@ -276,7 +297,7 @@ class ViewTurtle(View):
         turtle.begin_fill()
         turtle.circle(d)  
         turtle.end_fill()
-        
+
 
 if __name__ == "__main__":
     WIDTH = 25
