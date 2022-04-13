@@ -44,8 +44,10 @@ def solution(polygons):
                 AD = distance(A, D)
                 AC = distance(A, C)
                 BD = distance(B, D)
-                if (isclose(AB, BC) and isclose(AB, CD) and isclose(AB, AD)
-                        and isclose(AC, BD) and isclose(sqrt(2) * AB, AC)):
+                if (isclose(AB, BC) and isclose(AB, CD) 
+                        and isclose(AB, AD) and isclose(AC, BD) 
+                        and isclose(sqrt(2) * AB, AC))
+                        and isclose(sqrt(2) * AB, BD)):
                     squares.append(polygon)
                     break
     return squares
