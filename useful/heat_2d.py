@@ -85,7 +85,13 @@ a = np.zeros((NM, NM))
 b = np.zeros(NM)
 
 # Tworzenie macierzy współczynników i wektora wyrazów wolnych układu równań
-# liniowych a * u == b
+# liniowych a * u == b. Lepszym (?) rozwiązaniem mogłoby być wyrzucenie z pętli
+# for obliczeń dla brzegu obszaru, dzięki czemu można byłoby nie używać
+# instrukcji if wewnątrz podwójnej pętli. Oczywiście należy zawsze unikać
+# if-wewnątrz-for, jednak zysk takiej optymalizacji będzie raczej nieznaczący:
+# najtrudniejsze i być może najbardziej pracochłonne jest rozwiązywanie równania
+# a * u == b, mające koszt czasowy co najmniej O(N³), natomiast budowanie
+# macierzy ma koszt O(N²).
 
 for i in range(N):
     for j in range(M):
@@ -104,16 +110,32 @@ for i in range(N):
             b[k] = temp_lo if i != 0 else temp_hi
 
 
-solution = np.linalg.solve(a, b)
-solution = np.reshape(solution, (M, N))
-solution = np.transpose(solution)
+# Najtrudniejsza część - rozwiązywanie równania macierzowego a * u == b.
+# Istnieją różne algorytmy rozwiązywania tego typu równań, SciPy używa algorytmu
+# z biblioteki LAPACK wykorzystującego dekompozycję LU. Ok, można takie rzeczy
+# robić samemu... ale właśnie po to jest LAPACK i SciPy aby było łatwo i szybko.
+#
+# Rozwiązanie jako takie jest wektorem, dzięki reshape i transpose jest
+# formowane w postaci macierzy z N wierszami i M kolumnami.
 
+u = np.linalg.solve(a, b)
+u = np.reshape(u, (M, N))
+u = np.transpose(u)
+
+
+# Teraz robione są wykresy. Wywołanie lispace tworzy równomiernie wypełnione
+# wektory potrzebne, wraz z macierzą u, do utworzenia wykresów.
+#
+# Nota bene, możemy dać wywołanie plt.savefig() z odpowiednimi parametrami
+# (po narysowaniu ale przed przed plt.show()) aby automatycznie zapisywać
+# rysunki w katalogu roboczym.
 
 x = np.linspace(0, M / 10, M)
 y = np.linspace(0, N / 10, N)
 
+# Wykres jako mapa konturowa pokazująca obliczony rozkład temperatur.
 
-plt.contourf(x, y, solution)
+plt.contourf(x, y, u)
 plt.gca().set_aspect('equal')
 plt.hot()
 plt.colorbar()
@@ -122,8 +144,10 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
 
+# Rozkład temperatur w połowie grubości a zarazem w połowie wysokości płytki.
+# Wartość x się zmienia.
 
-plt.plot(x, solution[N // 2, :],
+plt.plot(x, u[N // 2, :],
          x, (temp_hi + temp_lo) / 2 * np.ones(M))
 plt.grid()
 plt.title('rozkład temperatur w połowie grubości płytki')
@@ -132,11 +156,13 @@ plt.ylabel('temperatura, °C')
 plt.legend(('model', 'połowa różnicy temperatur'))
 plt.show()
 
+# Rozkład temperatur w połowie grubości a zarazem w połowie szerokości płytki.
+# Wartość y się zmienia.
 
-plt.plot(y, solution[:, 1],
-         y, solution[:, 10],
-         y, solution[:, M // 4],
-         y, solution[:, M // 2],
+plt.plot(y, u[:, 1],
+         y, u[:, 10],
+         y, u[:, M // 4],
+         y, u[:, M // 2],
          y, temp_hi - (temp_hi - temp_lo) / N * 10 * y, '--')
 plt.grid()
 plt.title('rozkład temperatur w połowie grubości płytki')
@@ -150,12 +176,14 @@ plt.legend(('wyniki dla x = 0.1 mm',
 plt.show()
 
 
-print()
+# Wypisanie różnych danych jakie można obliczyć.
+
 temp_average = (temp_lo + temp_hi) / 2
-temp_center = solution[N // 2, M // 2]
+temp_center = u[N // 2, M // 2]
 rel_diff_temp = (temp_center - temp_average) / temp_average
-print(f'temperatura w centrum płytki wynosi {solution[N // 2, M // 2]:.1f} °C')
-print('różnica procentowa',
-      '{:.1%}'.format(rel_diff_temp),
+
+print()
+print(f'temperatura w centrum płytki wynosi {u[N // 2, M // 2]:.1f} °C')
+print('różnica procentowa', '{:.1%}'.format(rel_diff_temp),
       'w porównaniu z przewidywaną temperaturą')
 print()
