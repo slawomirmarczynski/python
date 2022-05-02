@@ -1,9 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
 Obliczanie czy dany dzień jest ustawowo wolny od pracy.
 
 Obecna wersja wspiera wyłącznie aktualne (rok 2022) polskie przepisy
 i nie będzie dawała poprawnych wyników dla dat historycznych.
 """
+
+# pylint: disable=invalid-name
 
 import datetime
 
@@ -58,7 +63,7 @@ class Holidays:
         l = (2 * e + 2 * i - h - k + 32) % 7
         m = (a + 11 * h + 19 * l) // 433
         n = (h + l - 7 * m + 90) // 25
-        p = (h + l - 7 * m + 33 * n + 19) % 32  # TODO: sprawdzić!                
+        p = (h + l - 7 * m + 33 * n + 19) % 32  # TODO: sprawdzić!
         return datetime.date(year, n, p)
 
     @staticmethod
@@ -77,7 +82,7 @@ class Holidays:
 
         Zwraca:
             obiekt date będący datą Wielkanocy obliczoną tak jak wymaga tego
-            prawosławie (według kalednarza juliańskiego), ale zapisaną jako
+            prawosławie (według kalendarza juliańskiego), ale zapisaną jako
             dzień kalendarza gregoriańskiego (dlatego +13 dni dodane do wyniku)
         """
         # Dlaczego metoda statyczna a nie funkcja lokalna metody is_free() ?
