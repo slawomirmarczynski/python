@@ -254,7 +254,7 @@ class Holidays:
         year = given_date.year
         if year not in self.memorized_years:
             eastern_gregorian = self.compute_eastern_date(year)
-            eastern_julian = self.compute_eastern_date_orthodox(year)
+            eastern_orthodox = self.compute_eastern_date_orthodox(year)
             for h in self.holidays:
                 if isinstance(h, tuple):
                     day, month = h
@@ -264,7 +264,7 @@ class Holidays:
                     if code == 'g':
                         self.dates.add(eastern_gregorian + offset)
                     elif code == 'j':
-                        self.dates.add(eastern_julian + offset)
+                        self.dates.add(eastern_orthodox + offset)
                     else:
                         raise ValueError
                 else:
