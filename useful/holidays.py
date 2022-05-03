@@ -4,11 +4,11 @@
 """
 Obliczanie czy dany dzień jest ustawowo wolny od pracy.
 
-Obecna wersja wspiera wyłącznie aktualne (rok 2022) polskie przepisy
-i nie będzie dawała poprawnych wyników dla dat historycznych.
+Obecna wersja wspiera wyłącznie aktualne (rok 2022, tj. lista świąt taka jaka
+obowiązuje od 2011 roku) polskie przepisy i nie będzie dawała poprawnych
+wyników dla dat historycznych.
 """
 
-# pylint: disable=invalid-name
 
 import datetime
 
@@ -18,6 +18,8 @@ class Holidays:
     Obiekty klasy Holidays potrafią sprawdzić czy dany dzień jest wolny
     od pracy.
     """
+
+    # Poniedziałek jest pierwszym dniem tygodnia, niedziela jest siódmym.
 
     MONDAY = 1
     TUESDAY = 2
@@ -41,15 +43,20 @@ class Holidays:
         Zwraca:
             obiekt date będący datą Wielkanocy
         """
+
         # Dlaczego metoda statyczna, a nie funkcja lokalna metody is_free() ?
         # Obliczanie daty Wielkanocy może być przydatne niekoniecznie tylko
         # wewnątrz is_free(). Gdyby zaś zadeklarować compute_eastern_date()
         # poza klasą (czyli po prostu jako zwykłą funkcję modułu) to byłaby
-        # ona zbyt słabo powiązana z klasą Holidays.
+        # ona zbyt słabo powiązana z klasą Holidays. Ultrapoprawne byłoby
+        # wydzielenie odrębnego modułu/klasy/funkcji do obliczania daty
+        # Wielkanocy, na wypadek gdyby było to komuś tylko to potrzebne.
         #
         # Algorytm podany przez T. H. O'Beirne, "How ten divisions lead
         # to Easter, New Scientist, 30 marca 1961,
         # https://books.google.com/books?id=zfzhCoOHurwC&pg=PA828 (2 maja 2022)
+
+        # pylint: disable=invalid-name
 
         a = year % 19
         b = year // 100
@@ -85,12 +92,17 @@ class Holidays:
             prawosławie (według kalendarza juliańskiego), ale zapisaną jako
             dzień kalendarza gregoriańskiego (dlatego +13 dni dodane do wyniku)
         """
+
         # Dlaczego metoda statyczna a nie funkcja lokalna metody is_free() ?
         # Obliczanie daty Wielkanocy może być przydatne niekoniecznie tylko
         # wewnątrz is_free(). Gdyby zadeklarować compute_eastern_date_julian()
         # poza klasą (czyli po prostu jako zwykłą funkcję modułu) to byłaby
-        # ona zbyt słabo powiązana z klasą Holidays.
-        #
+        # ona zbyt słabo powiązana z klasą Holidays.  Ultrapoprawne byłoby
+        # wydzielenie odrębnego modułu/klasy/funkcji do obliczania daty
+        # Wielkanocy, na wypadek gdyby było to komuś tylko to potrzebne.
+
+        # pylint: disable=invalid-name
+
         a = year % 4
         b = year % 7
         c = year % 19
@@ -148,6 +160,16 @@ class Holidays:
                 program tego nie sprawdza i nie wymusza.
         """
 
+        # Nota bene, być może bardziej eleganckim rozwiązaniem byłoby użycie
+        # zdefiniowanie na zewnątrz kolekcji świąt aby wstrzyknąć je do
+        # inicjalizatora klasy Holidays, np:
+        #
+        #   free_days = Holidays(LUTERANIE)
+        #
+        # gdzie LUTERANIE to byłaby krotka z danymi takimi jakie są poniżej.
+        # Uniknęlibyśmy dzięki temu if-ów, __init__() byłoby prostsze, klasa
+        # Holidays spełniłaby zasadę OCD (patrz SOLID).
+
         assert locale == 'pl_PL'
 
         self.weekend = weekend
@@ -179,11 +201,19 @@ class Holidays:
             ]
         elif extra == 'ewangelicy':
             self.holidays += [
+                'g-2',  # Wielki Piątek
                 'g+40',  # Wielki Czwartek
             ]
         elif extra == 'luteranie':
             self.holidays += [
+                'g-2',  # Wielki Piątek
+                'g+40',  # Wielki Czwartek
                 (31, 10),  # Święto Reformacji
+            ]
+        elif extra == 'mariawici':
+            self.holidays += [
+                (2, 8),  # Dzieło Wielkiego Miłosierdzia
+                (23, 8),  # Święto Krwi i Ofiary
             ]
         elif extra == 'prawosławni':
             self.holidays += [
@@ -193,8 +223,6 @@ class Holidays:
                 (7, 4),  # Zwiastowanie Najświętszej Marii Panny
                 (19, 8),  # Przemienienie Pańskie
                 (28, 8),  # Zaśnięcie Najświętszej Marii Panny
-                (2, 8),  # Dzieło Wielkiego Miłosierdzia
-                (23, 8),  # Święto Krwi
                 'j+0',  # Wielkanoc (niedziela wielkanocna)
                 'j+1',  # Wielkanoc (poniedziałek wielkanocny)
             ]
