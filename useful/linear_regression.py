@@ -32,7 +32,7 @@ print()
 
 # Czytanie danych
 
-DATA_FILE_NAME = 'data.txt'
+DATA_FILE_NAME = 'linear_regression_data.txt'
 print('dane są czytane z pliku', DATA_FILE_NAME)
 x, y = numpy.loadtxt(DATA_FILE_NAME, unpack=True)
 

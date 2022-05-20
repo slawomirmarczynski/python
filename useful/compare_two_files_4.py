@@ -4,7 +4,7 @@
 """
 Porównywanie zawartości dwóch plików ignorujące znaki specjalne.
 
-Chcemy porównać czy dawa pliki tekstowe zawierają taką samą treść. Dopuszczamy
+Chcemy porównać czy dwa pliki tekstowe zawierają taką samą treść. Dopuszczamy
 różnice takie jak dodatkowe spacje czy zmiany linii, ale litery muszą być takie
 same. Pliki uznać chcemy także za różne jeżeli w jednym z nich będzie napisane
 "tak samo", a w drugim "taksamo" (bez spacji pomiędzy wyrazami).
@@ -21,8 +21,8 @@ import re
 
 # @todo: Nazwy plików pobierać z argumentów wywołania programu.
 #
-FILE_NAME1 = 'plik1.txt'
-FILE_NAME2 = 'plik2.txt'
+FILE_NAME1 = 'compare_two_files_plik1.txt'
+FILE_NAME2 = 'compare_two_files_plik2.txt'
 
 
 def read_text(file_name):

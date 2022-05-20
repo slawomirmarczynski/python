@@ -4,7 +4,7 @@
 """
 Porównywanie zawartości dwóch plików ignorujące znaki specjalne.
 
-Chcemy porównać czy dawa pliki tekstowe zawierają taką samą treść. Dopuszczamy
+Chcemy porównać czy dwa pliki tekstowe zawierają taką samą treść. Dopuszczamy
 różnice takie jak dodatkowe spacje czy zmiany linii, ale litery muszą być takie
 same. Pliki uznać chcemy także za różne jeżeli w jednym z nich będzie napisane
 "tak samo", a w drugim "taksamo" (bez spacji pomiędzy wyrazami).
