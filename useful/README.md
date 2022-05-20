@@ -17,8 +17,8 @@ Obliczanie współczynników regresji liniowej, szacowanie niepewności współc
 Program ilustruje użycie bibliotek numpy, scipy i matplotlib do zaawansowanych obliczeń.
 
 1. *linear_regression.py* - program jako taki.
-1. *data.txt* - przykładowe dane dla programu.
-1. *ilustracja.png* - wykres narysowany przez program.
+1. *linear_regression_data.txt* - przykładowe dane dla programu.
+1. *linear_regression_fig.png* - wykres narysowany przez program.
 
 ## Porównywanie plików tekstowych.
 
@@ -30,8 +30,8 @@ warunkowych; zastosowanie wyrażeń regularnych.
 1. *compare_two_files_2.py* - ulepszona wersja, nadal niezbyt elegancka, ale dzięki funkcjom ma mniej powtarzającego się kodu (zasada DRY).
 1. *compare_two_files_3.py* - *pythoniczny* wariant - dzięki użyciu standardowej obsługi wyrażeń regularnych.
 1. *compare_two_files_4.py* - jest to ten sam wariant co *compare_two_files_3.py*, ale z usuniętymi komentarzami dydaktycznymi.
-1. *plik1.txt* - tekst przykładowy (szablon licencji MIT-expat).
-1. *plik2.txt* - tekst przykładowy (szablon licencji MIT-expat inaczej sformatowany).
+1. *compare_two_files_plik1.txt* - tekst przykładowy (szablon licencji MIT-expat).
+1. *compare_two_files_plik2.txt* - tekst przykładowy (szablon licencji MIT-expat inaczej sformatowany).
 
 ## Raportowanie zmian plików w folderze
 
@@ -44,7 +44,9 @@ Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi pr�
 1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem.
 1. *air_drag_scipy.py* - program wykorzystujący metodę Runge-Kutty 4 rzędu i metodę Runge-Kutty
     5 rzędu (RK45).
+1. *air_drag_fig.png* - wykres narysowany przez program.
 
 ## Rozwiązywanie równania Laplace'a
 
 1. *heat_2d.py* - program demonstrujący możliwości bibliotek NumPy, SciPy i MatPlotLib.
+1. *heat_2d_fig.png* - wykres narysowany przez program.
