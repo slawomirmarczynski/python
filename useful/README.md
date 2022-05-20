@@ -44,7 +44,7 @@ Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi pr�
 1. *air_drag.py* - program wykorzystujący metodę Eulera ze stałym krokiem.
 1. *air_drag_scipy.py* - program wykorzystujący metodę Runge-Kutty 4 rzędu i metodę Runge-Kutty
     5 rzędu (RK45).
-1. *air_drag_fig.png* - wykres narysowany przez program.
+1. *air_drag_scipy_fig.png* - wykres narysowany przez program.
 
 ## Rozwiązywanie równania Laplace'a
 
