@@ -50,3 +50,7 @@ Ruch pocisku w ośrodku stawiającym opór proporcjonalny do drugiej potęgi pr�
 
 1. *heat_2d.py* - program demonstrujący możliwości bibliotek NumPy, SciPy i MatPlotLib.
 1. *heat_2d_fig.png* - wykres narysowany przez program.
+
+## Obliczanie czy dany dzień jest ustawowo wolny od pracy.
+
+1. *holidays.py* - obliczanie czy dany dzień jest ustawowo wolny od pracy. Obecna wersja wspiera wyłącznie aktualne (rok 2022, tj. lista świąt będących dniami wolnymi taka jaka obowiązuje od 2011 roku) polskie przepisy i nie daje poprawnych wyników dla dat historycznych. Dla dat historycznych (lub dla świąt w innych państwach) można klasę Holidays łatwo skonfigurować (OCD/SOLID) poprzez dostarczenie odpowiednich danych inicjalizatorowi obiektu klasy Holidays.
