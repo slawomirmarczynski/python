@@ -272,24 +272,29 @@ print(foo1(5.1, 5.2))
 print(foo2(-0.1, 0.01))
 
 # a w ten sposób wyeliminować if-else a także uprościć program. Podobnie taki
-# fragment jak poniżej:
+# fragment jak poniżej (pass jest zamiast instrukcji których jeszcze nie ma):
 
 for i in range(1, 5):
     if i == 1:
         # ... tu jakieś instrukcje
+        pass
     elif 1 < i < 4:
         # ... tu jakieś instrukcje
-    elif i == 4:
+        pass
+    elif i == 4:        
         # ... tu jakieś instrukcje
+        pass
 
 # Poprawnie należałoby napisać
 
-    i = 1:
+    i = 1
     # ... tu jakieś instrukcje
     for i in range(2, 4):
         # ... tu jakieś instrukcje
-    i = 4:
+        pass
+    i = 4
     # ... tu jakieś instrukcje
+    pass
 
 # ewentualnie jeżeli i nie jest potrzebne to nawet jeszcze krócej, bez i = 1,
 # bez i = 4.
