@@ -42,7 +42,7 @@ Problem fizyczny:
 Sposób rozwiązania:
 
     Program wykorzystuje do rozwiązywania równań różniczkowych zwyczajnych
-    (ODE) z zadanymi warunkami początkowymi (IVP) zaawansowaną algorytm
+    (ODE) z zadanymi warunkami początkowymi (IVP) zaawansowany algorytm
     adaptacyjny wykorzystujący metodę Runge-Kutty 4 rzędu i metodę Runge-Kutty
     5 rzędu (RK45).[1] Brzmi to jak coś bardzo trudnego, ale dzięki wywołaniu
     funkcji solve_ivp, jaka jest w bibliotece scipy, program staje się prostszy
