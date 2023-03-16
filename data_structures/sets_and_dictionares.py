@@ -45,7 +45,7 @@ def solution2(a, b):
 # zaczyna to być problemem. Listy po 100 tysięcy elementów każda zmuszają do
 # nawet do dziesięciu miliardów porównań, a to już trochę musi potrwać.
 #
-# Efektywniejsz jest użycie innej niż lista struktury - takiej jak słownik lub
+# Efektywniejsze jest użycie innej niż lista struktury - takiej jak słownik lub
 # takiej jak zbiór.
 #
 # Zbiory tworzy się podobnie jak listy, tylko że zamiast słowa list jest słowo
