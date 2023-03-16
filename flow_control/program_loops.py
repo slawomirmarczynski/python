@@ -6,7 +6,7 @@ Zastosowanie pętli for i while w języku Python.
 
 Instrukcje iteracji to w Pythonie pętla for i pętla while. Nie ma pętli
 do-while, ale dzięki słowom kluczowym break oraz continue da się ją zastąpić
-pętlą while. Szczególnie ciekawa jest możliwość używania wraz z while lub for.
+pętlą while.
 
 Oczywiste przykłady można znaleźć w podręcznikach do nauki Pythona,
 tu jest parę trudniejszych i mniej oczywistych.
