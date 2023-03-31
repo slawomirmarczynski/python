@@ -30,8 +30,9 @@ def button_callback(*args):
     my_fancy_function(user, password)
     # print("użytkownik:", user, "hasło:", password)
 
-
-frame = ttk.Frame(root)
+frame0 = ttk.Frame(root)
+frame = ttk.Frame(frame0)
+frame0.pack(fill="both")
 frame.pack(fill="both")
 
 label_title = ttk.Label(frame, text=_("Logowanie do systemu"))
@@ -56,6 +57,7 @@ style.map("TButton", background=[('active', 'lightgreen')])
 
 frame.columnconfigure(1, weight=1)
 
+frame.pack_configure(padx=20, pady=20)
 for widget in frame.winfo_children():
     widget.grid_configure(padx=5, pady=10)
 

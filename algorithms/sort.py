@@ -150,6 +150,37 @@ def quick_sort(a):
     return quick_sort(left) + [pivot] + quick_sort(right)
 
 
-data = generate_test_data(20)
-for alg in insertion_sort, selection_sort, bubble_sort, quick_sort, sorted:
-    print(alg(data))
+def merge_sort(a):
+    """
+    Sortowanie przez scalanie.
+    """
+    if len(a) > 1:
+        print(a)
+        m = len(a) // 2
+        left = a[:m]
+        right = a[m:]
+        merge_sort(left)
+        merge_sort(right)
+        i = 0
+        while left and right:
+            if left[0] < right[0]:
+                a[i] = left.pop(0)
+            else:
+                a[i] = right.pop(0)
+            i += 1
+        while left:
+            a[i] = left.pop(0)
+            i += 1
+        while right:
+            a[i] = right.pop(0)
+            i += 1
+
+
+if __name__ == '__main__':
+    data = generate_test_data(10)
+    algorithms = (insertion_sort, selection_sort, bubble_sort, quick_sort,
+                  merge_sort, sorted)
+
+    for alg in algorithms:
+        d = data.copy()
+        print(alg(d))
