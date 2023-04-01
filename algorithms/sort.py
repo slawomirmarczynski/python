@@ -153,14 +153,39 @@ def quick_sort(a):
 def merge_sort(a):
     """
     Sortowanie przez scalanie.
+
+    Załóżmy że merge_sort(a) naprawdę potrafi posortować dane. W takim razie
+    potrafi posortować także nie całą, ale połowę listy jaką mu przekażemy.
+    Czyli możemy osobno posortować jakąś część danych (najlepiej połowę)
+    i osobno pozostałą część danych. W ten sposób będziemy mieli dwa odrębne
+    posortowane ciągi danych. Takie ciągi łatwo możemy scalić w jeden
+    posortowany ciąg danych.
+
+    Rzecz w tym, że w ten sposób merge_sort, wywoływane rekurencyjnie,
+    będzie w końcu zmuszone do sortowania list złożonych z jednego elementu
+    lub nawet list pustych. Nie jest to jednak problemem, bo takie listy
+    uważamy za już posortowane, więc nie musimy ich sortować.
     """
     if len(a) > 1:
-        print(a)
+
+        # Dzielenie na dwa ciągi. W odróżnieniu od sortowania szybkiego
+        # elementy rozdzielamy bez porównywania ich ze sobą czy jakąś
+        # wybraną wartością.
+
         m = len(a) // 2
         left = a[:m]
         right = a[m:]
+
+        # Rekursywne wywołanie merge_sort.
+
         merge_sort(left)
         merge_sort(right)
+
+        # Scalanie posortowanych już left i right. Pierwsza pętla while scala
+        # elementy gdy są one jeszcze dostępne w obu listach posortowanych.
+        # Druga i trzecia są aby dopisać elementy gdy jedna z list się
+        # wyczerpie.
+
         i = 0
         while left and right:
             if left[0] < right[0]:
