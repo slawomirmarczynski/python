@@ -181,10 +181,10 @@ def merge_sort(a):
         merge_sort(left)
         merge_sort(right)
 
-        # Scalanie posortowanych już left i right. Pierwsza pętla while scala
-        # elementy gdy są one jeszcze dostępne w obu listach posortowanych.
-        # Druga i trzecia są aby dopisać elementy gdy jedna z list się
-        # wyczerpie.
+        # Scalanie posortowanych już left i right. Pierwsza pętla while
+        # scala elementy gdy są one jeszcze dostępne w obu listach
+        # posortowanych. Druga i trzecia są aby dopisać elementy gdy
+        # jedna z list się wyczerpie.
 
         i = 0
         while left and right:
