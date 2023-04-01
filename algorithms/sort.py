@@ -171,12 +171,12 @@ def merge_sort(a):
         # Dzielenie na dwa ciągi. W odróżnieniu od sortowania szybkiego
         # elementy rozdzielamy bez porównywania ich ze sobą czy jakąś
         # wybraną wartością.
-
+        #
         m = len(a) // 2
         left = a[:m]
         right = a[m:]
 
-        # Rekursywne wywołanie merge_sort.
+        # Rekurencyjne wywołanie merge_sort.
 
         merge_sort(left)
         merge_sort(right)
@@ -185,7 +185,7 @@ def merge_sort(a):
         # scala elementy gdy są one jeszcze dostępne w obu listach
         # posortowanych. Druga i trzecia są aby dopisać elementy gdy
         # jedna z list się wyczerpie.
-
+        #
         i = 0
         while left and right:
             if left[0] < right[0]:
@@ -200,12 +200,21 @@ def merge_sort(a):
             a[i] = right.pop(0)
             i += 1
 
+        return a
+
 
 if __name__ == '__main__':
-    data = generate_test_data(10)
-    algorithms = (insertion_sort, selection_sort, bubble_sort, quick_sort,
-                  merge_sort, sorted)
+    test_data_length = 20
+    data = generate_test_data(test_data_length)
+    algorithms = (insertion_sort, selection_sort, bubble_sort,
+                  quick_sort, merge_sort, sorted)
 
-    for alg in algorithms:
-        d = data.copy()
-        print(alg(d))
+    for algorithm in algorithms:
+
+        # Aby porządnie przetestować działanie musimy skopiować dane.
+        # Gdybyśmy tego nie zrobili to tylko pierwszy użyty algorytm
+        # dostałby nieposortowane dane, kolejne uruchamiane byłyby
+        # na już posortowanych danych.
+        #
+        data_copy = data.copy()
+        print(algorithm(data_copy))
