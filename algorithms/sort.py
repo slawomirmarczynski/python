@@ -203,18 +203,79 @@ def merge_sort(a):
         return a
 
 
+def tape3_sort(a):
+    """
+    Sortowanie przez scalanie - trójtaśmowe.
+
+    Dawno, dawno temu, komputery mało mało pamięci RAM i duże ilości danych
+    były przechowywane na półcalowej szerokości taśmach magnetycznych.
+    Jak sortowano dane? Idea jest dość prosta: rozdzielamy uporządkowane
+    ciągi danych z taśmy a na dwie taśmy b i c. Następnie dane z taśm b i c
+    scalano na powrót zapisując na taśmie a. Te operacje powtarzano w razie
+    potrzeby.
+
+    Bardzo uproszczony algorytm, jaki jest zaimplementowany poniżej, ilustruje
+    użycie trzech taśm (a, b, c) do sortowania. Ulepszony algorytm używa
+    czterech taśm (a, b, c, d) tak że dane z taśm (a, b) są łączone i od razu
+    rozdzielane na taśmy (c, d)... potem następuje zamiana par taśm.
+    Oczywiście sortowanie z czterema szpulami taśmy magnetycznej było możliwe
+    tylko wtedy gdy dysponowaliśmy czterema stacjami odczytu/zapisu takich
+    taśm. Patrz też https://en.wikipedia.org/wiki/Magnetic-tape_data_storage
+    (03.04.2023).
+    """
+
+    def unsorted(tape):
+        "Sprawdzanie czy dane na taśmie są uporządkowane."
+        for i in range(2, len(tape)):
+            if tape[i - 1] > tape[i]:
+                return True
+        return False
+
+    def split(tape):
+        "Rozdzielanie danych z jednej taśmy na dwie inne."
+        p = []
+        q = []
+        if tape:
+            p.append(tape[0])
+            for i in range(1, len(tape)):
+                if tape[i] < tape[i - 1]:
+                    p, q = q, p
+                p.append(tape[i])
+        return p, q
+
+    def merge(p, q):
+        "Łączenie danych z dwóch taśm przez ich zapis na jedną taśmę."
+        pq_merged = []
+        while p and q:
+            pq_merged.append(p.pop(0) if p[0] <= q[0] else q.pop(0))
+
+        # Uzupełnianie pq_merged o ewentualnie jeszcze nie przepisane
+        # dane. Ponieważ w tym miejscu albo p, albo q, albo p i q są listami
+        # pustymi to nie trzeba sprawdzać czy dopisać p, czy q, czy może nic
+        # nie trzeba dopisywać.
+        #
+        return pq_merged + p + q
+
+    while unsorted(a):
+        b, c = split(a)
+        a = merge(b, c)
+    return a
+
+
 if __name__ == '__main__':
-    test_data_length = 20
+    test_data_length = 40
     data = generate_test_data(test_data_length)
     algorithms = (insertion_sort, selection_sort, bubble_sort,
-                  quick_sort, merge_sort, sorted)
+                  quick_sort, merge_sort, tape3_sort, sorted)
 
     for algorithm in algorithms:
 
         # Aby porządnie przetestować działanie musimy skopiować dane.
         # Gdybyśmy tego nie zrobili to tylko pierwszy użyty algorytm
         # dostałby nieposortowane dane, kolejne uruchamiane byłyby
-        # na już posortowanych danych.
+        # na już posortowanych danych. Zamiast kopiowania moglibyśmy
+        # dane generować na nowo - ale nie robimy tego, bo chcemy mieć
+        # takie same dane za każdym razem.
         #
         data_copy = data.copy()
         print(algorithm(data_copy))
