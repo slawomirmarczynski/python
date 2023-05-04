@@ -38,6 +38,7 @@ import hashlib
 import os
 import pickle
 import sys
+from collections import defaultdict
 
 DEFAULT_FOLDER = '.'
 DIGESTS_FILE_NAME = 'cerber.p'
@@ -297,10 +298,41 @@ def report_moved_only(old_list, new_list):
     result = []
     for f_new in new_list:
         new_digest, new_name, new_path, new_full = f_new
+        file_changed_or_deleted = True
         for f_old in old_list:
             old_digest, old_name, old_path, old_full = f_old
-            if old_digest == new_digest and old_path != new_path and old_name == new_name:
-                result.append((f_old, f_new))
+            if old_digest == new_digest and old_path == new_path and old_name == new_name:
+                file_changed_or_deleted = False
+                break
+        if file_changed_or_deleted:
+            for f_old in old_list:
+                old_digest, old_name, old_path, old_full = f_old
+                if old_digest == new_digest and old_path != new_path and old_name == new_name:
+                    result.append((f_old, f_new))
+    return result
+
+
+def report_duplicated(new_list):
+    """
+    Tworzenie raportu o obecnie zduplikowanych.
+
+    Argumenty:
+        new_list: lista list krotek "nowych" plików, każda krotka powinna
+            się składać z wartości funkcji skrótu, nazwy, ścieżki oraz
+            pełnej nazwy pliku (czyli ścieżki i nazwy razem).
+            Lista może być pusta, np. jeżeli nie było wcześniej żadnych
+            plików.
+    Zwraca:
+        listę opisującą pliki zduplikowane; lista ta może być pusta.
+    """
+    result = []
+    digest_dict = defaultdict(list)
+    for f_new in new_list:
+        new_digest, new_name, new_path, new_full = f_new
+        digest_dict[new_digest].append(f_new)
+    for f_list in digest_dict.values():
+        if len(f_list) > 1:
+            result.append(f_list)
     return result
 
 
@@ -366,8 +398,24 @@ def print_report(description, result):
                 old_digest, old_name, old_path, old_full = f_new
                 list_.append(old_full)
         list_ = sorted(list_)
-        for full_file_name in list_:
-            print(full_file_name)
+        for item in list_:
+            print(item)
+
+
+def print_duplicates(description, list_lists_duplicates):
+    """
+    """
+    if list_lists_duplicates:
+        print()
+        print('=' * REPORT_LINES_LEN)
+        print(len(list_lists_duplicates), description)
+        print('-' * REPORT_LINES_LEN)
+        for i, list_duplicates in enumerate(list_lists_duplicates, 1):
+            j = 0
+            for digest, name, path, full in list_duplicates:
+                j += 1
+                print(f"{i}.{j}. {full}")
+            print()
 
 
 def main():
@@ -389,6 +437,9 @@ def main():
              ('moved files', report_moved_only),
              ('renamed files', report_renamed_only),
              ('moved and renamed files', report_moved_and_renamed))
+
+    duplicates = report_duplicated(new)
+    print_duplicates('duplicates', duplicates)
 
     changes_detected = False
     for description, procedure in tests:
