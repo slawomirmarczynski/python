@@ -33,7 +33,9 @@ for key in data:
     counter.update(unique_values)
 
 for number in counter:
-    if counter[number]
+    if counter[number] >= 3:
+        print(number)
+
 
 
 
