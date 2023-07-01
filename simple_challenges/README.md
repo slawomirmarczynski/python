@@ -43,5 +43,3 @@ bibliotek do osiągnięcia założonego celu.
 
 1. *white_list.py* - bardzo prosty przykład na sprawdzanie *każdego z każdym.*
    Przyjemną niespodzianką może być w jaki sposób działa operator *in.*
-   
-?
