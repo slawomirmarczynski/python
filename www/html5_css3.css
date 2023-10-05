@@ -1,0 +1,30 @@
+html 
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(174, 187, 195);
+}
+
+h1
+{
+    font-weight: 900;
+}
+
+p
+{
+    text-align: justify;
+    color: slateblue;
+    text-indent: 4ch;
+}
+
+img
+{
+    width: 50%;
+    border: 2px solid greenyellow;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+figcaption
+{
+    color: red;
+}
