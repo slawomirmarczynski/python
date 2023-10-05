@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!-- To jest komentarz -->
+
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="author"      content="Sławomir Marczyński">
+    <meta name="keywords"    content="example Javascript HTML5 canvas">
+    <meta name="description" content="Przykład jak można użyć kanwy HTML5 i Javascript.">
+
+    <!--Metadane DCMI (Dublin Core Metadata Initiative)-->
+    <meta name="dc.date"     content="2023-10-05">
+    <meta name="dc.modified" content="2023-10-05">
+
+
+    <title>
+        Kanwa
+    </title>
+</head>
+
+<body>
+
+<canvas id="kanwa" width="400" height="400", style="border: 1px solid;">
+    Tekst zastępczy - gdy przeglądarka jest przestarzała i nie obsługiwałaobsługuje
+    elementu canvas to cały ten tekst jest pokazywany zamiast kanwy.
+</canvas>
+
+<script>
+    // Otrzymujemy dostęp do kanwy i możliwość rysowania na niej.
+    //
+    let canvas = document.getElementById("kanwa");
+    let context = canvas.getContext("2d");
+
+    // Ustalamy rozmiary rysunku.
+    //
+    let marginSizePrecentage = 0.05;
+    let scale = (1 - 2 * marginSizePrecentage) / 2;
+    let xCenter = canvas.width / 2;
+    let yCenter = canvas.height / 2;
+    let circleRadius = scale * Math.min(canvas.width, canvas.height);
+    
+    // Wybieramy losowe punkty na okręgu. Aby narysować trójkąt wpisany w koło
+    // będziemy potrzebowali trzech takich punktów.
+    //
+    let N = 3;
+    let angles = [];
+    for (let i = 0; i < N; i++) {
+        angles[i] = Math.random() * 2 * Math.PI;
+    }
+    angles = angles.sort(function(p, q) { return p - q; });
+
+    // Rysujemy okrąg.
+    //
+    context.beginPath();
+    context.arc(xCenter, yCenter, circleRadius, 0, 2*Math.PI);
+    context.stroke();
+
+    // Rysujemny figurę (trójkąt) wpisany wewnątrz okręgu.
+    //
+    context.beginPath();
+    let x0 = xCenter + circleRadius * Math.cos(angles[0]);
+    let y0 = yCenter + circleRadius * Math.sin(angles[0])
+    context.moveTo(x0, y0);
+    for (let i = 1; i < N; i++) {
+        let x = xCenter + circleRadius * Math.cos(angles[i]);
+        let y = yCenter + circleRadius * Math.sin(angles[i])
+        context.lineTo(x, y);
+    }
+    context.lineTo(x0, y0);
+    context.stroke();
+</script>
+
+</body>
+
+</html>
