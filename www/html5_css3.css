@@ -16,12 +16,17 @@ p
     text-indent: 4ch;
 }
 
+figure
+{
+    text-align: center;
+}
+
 img
 {
-    width: 50%;
+    width: 60%;
     border: 2px solid greenyellow;
     border-radius: 8px;
-    padding: 4px;
+    padding: 8px;
 }
 
 figcaption
