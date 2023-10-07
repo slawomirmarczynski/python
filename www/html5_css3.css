@@ -1,7 +1,28 @@
-html 
+/*******************************************************************************
+Czym jest kaskadowy arkusz stylów (Cascade Style Sheet, CSS)?
+
+Plik HTML zawiera treść. Bez CSS ta treść byłaby pokazywana w standardowy
+sposób. Zastosowanie CSS umożliwia zmodyfikowanie kroju pisma, kolorów,
+rozmieszczenia, rodzaj ramek, marginesów itp. szczegółów.
+
+Reguły określające jaki styl mają mieć elementy HTML zapisuje się w nawiasach
+klamrowych poprzedzonych selektorem określającym do czego mają być zastosowane.
+Selektorem może być nazwa znacznika, np. h1. Selektory mogą być jednak znacznie
+bardziej złożone.
+
+Podobnie jak w przypadku HTML "produkcyjne" pliki CSS mogą być pozbawione
+komentarzy.
+
+UWAGA: kolory, ramki i ogólnie styl są tu celowo przesadne, aby lepiej można
+       było dostrzec jak działa CSS; tworząc profesjonalną stronę powinniśmy
+       zachować umiar, dobrać zharmonizowane kolory itp. itd.
+*******************************************************************************/
+
+
+html
 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(174, 187, 195);
+    background-color: lightblue;
 }
 
 h1
@@ -23,8 +44,8 @@ figure
 
 img
 {
-    width: 60%;
-    border: 2px solid greenyellow;
+    width: 30%;
+    border: 5px solid violet;
     border-radius: 8px;
     padding: 8px;
 }

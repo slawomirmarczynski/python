@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 
+
 <head>
     <meta charset="utf-8">
 
@@ -8,38 +9,92 @@
         Przykład
     </title>
 
+    <!-- Plik html5_css3.css jest dołączany jako arkusz stylów. -->
+
     <link rel="stylesheet" type="text/css" href="html5_css3.css">
 </head>
 
 
+<!-- 
+    Struktura dokumentu HTML jest taka, że <body> oznacza ogólnie to co ma
+    strona zawierać, <main> "główną zawartość" (czyli bez menu, nawigacji,
+    nagłówka i stopki), <article> wpis mający samodzielne znaczenie
+    (mogący być wyodrębniony z treści), <section> część czegoś (np. artykułu).
+    Ponadto możemy także używać <span> i <div>, choć te znaczniki nie są
+    nacechowane semantycznie. Znaczniki <h1>, <h2> itd. oznaczają nagłówki.
+    Znacznik <p> określa jeden akapit tekstu.
+
+    Uwaga: to jest tylko przykład, zwykle bowiem stosuje się mniejsze wcięcia
+    (2 spacje) lub nie stosuje się (w wersji "produkcyjnej") wcięć wcale.
+    Podobnie w wersji "produkcyjnej" komentarze mogą być całkowicie usunięte.
+    Daje to oszczędność ilości przesyłanych bajtów, współcześnie jednak takie
+    oszczędności są raczej bez znaczenia.
+-->
+
 <body>
+    <main>
+        <article>
 
-    <article>
+            <h1>
+                Nagłówek pierwszego poziomu
+            </h1>
 
-        <h1>
-            Nagłówek pierwszego poziomu
-        </h1>
+            <!-- 
+                Link do innej strony WWW tworzy się znacznikiem <a>,
+                znacznik <abbr> służy do oznaczania skrótów (umożliwia też
+                pokazywanie w przeglądarce co dany skrót oznacza).
+            -->
+             
+            <a href="https://zut.edu.pl">
+                Strona WWW 
+                <abbr title="Zachodniopomorskiego Uniwersytetu Technologicznego">
+                    ZUT
+                </abbr>
+            </a>
 
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Duis at tellus at urna condimentum mattis pellentesque id nibh. 
-            Amet facilisis magna etiam tempor orci eu. Sollicitudin aliquam ultrices sagittis orci. 
-            Augue interdum velit euismod in pellentesque massa placerat duis. Neque gravida in fermentum et. 
-            In fermentum posuere urna nec tincidunt. Tincidunt id aliquet risus feugiat. 
-            Magna eget est lorem ipsum dolor sit amet. Praesent tristique magna sit amet purus gravida quis blandit. 
-            Viverra nam libero justo laoreet sit. In hendrerit gravida rutrum quisque non tellus orci. 
-            Enim praesent elementum facilisis leo vel fringilla est ullamcorper. 
-            Sagittis purus sit amet volutpat consequat mauris nunc.
-        </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua.
+            </p>
 
-        <figure>
-            <img src="image.jpg">
-            <figcaption>
-                Obrazek 1.
-            </figcaption>
-        </figure>
+            <!--
+                Tekst można wyróżniać w rozmaity sposób. 
+                Albo stosując znaczniki wprost zmieniające sposób wyświetlania,
+                takie jak <b> <i> itp., albo stosując znaczniki semantyczne,
+                takie jak <em>, <q> itd.
+            -->
 
-    </article>
+            <p>
+                <em>Lorem ipsum</em> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Duis at tellus at urna condimentum mattis pellentesque id nibh. 
+                Amet facilisis magna etiam tempor orci eu. Sollicitudin aliquam ultrices sagittis orci. 
+                Augue interdum velit euismod in pellentesque massa placerat duis. Neque gravida in fermentum et. 
+                In fermentum posuere urna nec tincidunt. Tincidunt id aliquet risus feugiat. 
+                Magna eget est lorem ipsum dolor sit amet. Praesent tristique magna sit amet purus gravida quis blandit. 
+                Viverra nam libero justo laoreet sit. In hendrerit gravida rutrum quisque non tellus orci. 
+                Enim praesent elementum facilisis leo vel fringilla est ullamcorper. 
+                Sagittis purus sit amet volutpat consequat mauris nunc.
+            </p>
+
+
+            <!--
+                Ilustracje wstawia się jako element <img>, podając w atrybucie
+                src lokalizację pliku w którym jest ilustracja. Umieszczenie
+                ilustracji wewnątrz <figure> służy scaleniu ilustracji z tekstem
+                jaki podpisuje ilustrację. Atrybut alt służy do zapodania tekstu
+                mogącego (w pewnym stopniu) zastąpić grafikę, np. w sytuacjach
+                w których nie można będzie zobaczyć obrazu.
+            -->
+
+            <figure>
+                <img src="image.jpg" alt="Krajobraz, lis i ptaki.">
+                <figcaption>
+                    Rysunek 1. Grafika wygenerowana przez program DALL-E.
+                </figcaption>
+            </figure>
+
+        </article>
+    </main>
 
 </body>
 
