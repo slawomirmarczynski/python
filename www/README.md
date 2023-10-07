@@ -29,7 +29,7 @@ sformatowane w wersji "produkcyjnej" bez użycia wcięć, bez systematycznego
 podziału na linie. Nie należy jednak sugerować się że twórcy stron internetowych
 tak właśnie, byle jak i niestarannie, piszą. Po prostu bardzo łatwo jest
 automatycznie skompresować tekst napisany w HTML i zwykle robi się to przed
-publikacją go na serwerze WWW. Niekiedy kod HTML jest generowany automatycznie
+publikacją go na serwerze. Niekiedy kod HTML jest generowany automatycznie
 (systemy CMS) i wtedy dbanie o czytelność kodu jest zbędne. 
 Natomiast przykłady tu przedstawione są napisane tak, aby łatwo było je
 zrozumieć.
