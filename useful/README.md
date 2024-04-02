@@ -1,5 +1,12 @@
 # Rozmaite przykłady
 
+## Ustalanie terminu spotkania wielu osób
+
+1. *meeting.py* - program ustalający datę spotkania wielu osób. Program jest w podkatalogu *meeting*, fikcyjne dane do programu są w podkatalogu *data*.
+   Dane są fikcyjne w tym sensie, że zostały wygenerowane generatorem liczb pseudolosowych ze zbioru popularnych polskich nazwisk i - niezależnie -
+   ze zbioru popularnych imion. Stąd wszelka zbieżność z realnymi osobami jest czysto przypadkowa. Dane te zostały dołączone jako dane przykładowe
+   pozwalające zapoznać się z działaniem programu.
+
 ## Błądzenie przypadkowe
 
 Błądzenie przypadkowe (random walking) jest uproszczonym modelem dyfuzji gazów i podobnych zjawisk: cząstka jest przesuwana w każdym kroku w losowo wybranym
