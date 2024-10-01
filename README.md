@@ -6,4 +6,3 @@
 1. **object_programming** - podstawy programowania obiektowego
 1. **useful** - inne przykłady praktycznie użyteczne
 1. **tkinter** - GUI - zastosowanie biblioteki tkinter w Pythonie
-2. 
