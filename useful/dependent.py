@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
 Obliczanie, metodą Monte Carlo, niepewności pomiarów pośrednich.
 
@@ -61,7 +64,7 @@ def mean_and_stddev(values):
     # Then dividing by the square root of the number of observations
     # and multiplying by the t coefficient.
     #
-    deviation = np.std(values, ddof=1) / math.sqrt(n) * t_coefficient
+    deviation = np.std(values, ddof=1) / math.sqrt(n - 1) * t_coefficient
 
     # Returning the mean and standard deviation
     #
