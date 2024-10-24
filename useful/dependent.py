@@ -71,35 +71,6 @@ def mean_and_stddev(values):
     return mean, deviation
 
 
-def gauss(x, x0, sigma):
-    """
-    Calculate the value of the Gaussian function (normal distribution).
-
-    This function computes the value of the Gaussian function for a given
-    x, with a specified center x0 and standard deviation sigma.
-
-    Args:
-        x (float or array-like): The input value(s) for which to calculate
-            the Gaussian function.
-        x0 (float): The center of the Gaussian distribution.
-        sigma (float): The standard deviation of the Gaussian distribution.
-
-    Returns:
-        float or array-like: The value(s) of the Gaussian function
-            at the given x.
-
-    Example:
-        >>> x = 0
-        >>> x0 = 0
-        >>> sigma = 1
-        >>> result = gauss(x, x0, sigma)
-        >>> print(result)
-        0.3989422804014327
-    """
-    return 1.0 / np.sqrt(2.0 * np.pi) / sigma * np.exp(
-        -(x - x0) ** 2 / 2.0 / sigma ** 2)
-
-
 @lru_cache
 def student_distribution_critical_value(
         degrees_of_freedom,
@@ -245,8 +216,8 @@ def main():
     # Calculate the Gaussian PDF values. Plot the PDF with a solid black line.
     lo, hi = ax.get_xlim()
     s_space = np.linspace(lo, hi, M)
-    pd_values = gauss(s_space, s_monte_carlo_mean, s_monte_carlo_stddev)
-    ax.plot(s_space, pd_values, 'k-')
+    pdf_values = norm.pdf(s_space, s_monte_carlo_mean, s_monte_carlo_stddev)
+    ax.plot(s_space, pdf_values, 'k-')
 
     # Plot a solid line at the mean surface area.
     # Plot a dashed line at one stddev above/below the mean.
