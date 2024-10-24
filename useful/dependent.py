@@ -56,15 +56,15 @@ def mean_and_stddev(values):
     mean = np.mean(values)
 
     # Getting the critical value from the Student's t-distribution
-    # for n observations.
+    # for n - 1 observations.
     #
-    t_coefficient = student_distribution_critical_value(n)
+    t_coefficient = student_distribution_critical_value(n - 1)
 
     # Calculating the standard deviation with Bessel's correction (ddof=1).
     # Then dividing by the square root of the number of observations
     # and multiplying by the t coefficient.
     #
-    deviation = np.std(values, ddof=1) / math.sqrt(n - 1) * t_coefficient
+    deviation = np.std(values, ddof=1) / math.sqrt(n) * t_coefficient
 
     # Returning the mean and standard deviation
     #
